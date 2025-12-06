@@ -1,5 +1,5 @@
 /* =========================================
-   CAROL TERAPEUTA - MAIN.JS
+   CAROL TERAPEUTA - SCRIPT.JS
    ========================================= */
 
 document.addEventListener('DOMContentLoaded', function() {
