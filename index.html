@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Carol Abientar - Terapeuta Sistêmica. Constelação Familiar, Tatuagem Sistêmica e Liberação Emocional.">
-    <title>Carol Abientar | Terapeuta Sistêmica</title>
+    <meta name="description" content="Carol Costa - Terapeuta e Tatuadora Sistêmica. Constelação Familiar, Tatuagem Sistêmica, Liberação Sistêmica e Movimento Novo Feminino.">
+    <title>Carol Costa | Terapeuta e Tatuadora Sistêmica</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,16 +19,25 @@
         }
 
         :root {
-            --bordo: #722F37;
-            --bordo-dark: #5A252C;
-            --bordo-light: #8B3A44;
-            --gold: #A4721C;
-            --gold-light: #C4922C;
+            /* Cores atualizadas - Vinho mais profundo e dourado mais contrastante */
+            --vinho: #4A1526;
+            --vinho-dark: #2D0D17;
+            --vinho-light: #6B2038;
+            --vinho-medium: #5C1A2E;
+            --gold: #D4A84B;
+            --gold-light: #E8C36B;
+            --gold-dark: #B8923F;
             --white: #FFFFFF;
-            --off-white: #FAF9F6;
+            --off-white: #FBF9F7;
+            --cream: #F5F0EB;
             --black: #1A1A1A;
             --gray: #6B6B6B;
             --gray-light: #9A9A9A;
+            
+            /* Gradientes */
+            --gradient-vinho: linear-gradient(135deg, var(--vinho-dark) 0%, var(--vinho) 50%, var(--vinho-light) 100%);
+            --gradient-gold: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-light) 100%);
+            --gradient-shine: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
         }
 
         html {
@@ -75,7 +84,38 @@
             line-height: 1.2;
         }
 
-        .text-gold { color: var(--gold); }
+        /* Texto dourado com melhor contraste */
+        .text-gold { 
+            color: var(--gold);
+            text-shadow: 0 0 30px rgba(212, 168, 75, 0.3);
+        }
+
+        /* ========== SHIMMER ANIMATION ========== */
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(212, 168, 75, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(212, 168, 75, 0.6); }
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
 
         /* ========== BUTTONS ========== */
         .btn {
@@ -89,54 +129,92 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            border-radius: 4px;
+            border-radius: 50px;
             border: none;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
-            background: var(--gold);
-            color: var(--white);
+            background: var(--gradient-gold);
+            background-size: 200% 200%;
+            color: var(--vinho-dark);
+            font-weight: 700;
+            box-shadow: 0 4px 20px rgba(212, 168, 75, 0.4);
         }
 
         .btn-primary:hover {
-            background: var(--gold-light);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(164, 114, 28, 0.3);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(212, 168, 75, 0.5);
+            animation: gradient-shift 2s ease infinite;
         }
 
         .btn-secondary {
             background: transparent;
             color: var(--white);
-            border: 1px solid rgba(255,255,255,0.4);
+            border: 2px solid rgba(255,255,255,0.5);
         }
 
         .btn-secondary:hover {
             background: rgba(255,255,255,0.1);
-            border-color: var(--white);
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-3px);
         }
 
         .btn-outline {
             background: transparent;
-            color: var(--bordo);
-            border: 1px solid var(--bordo);
+            color: var(--vinho);
+            border: 2px solid var(--vinho);
         }
 
         .btn-outline:hover {
-            background: var(--bordo);
+            background: var(--vinho);
             color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(74, 21, 38, 0.3);
         }
 
         .btn-whatsapp {
-            background: #25D366;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
             color: var(--white);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
         }
 
         .btn-whatsapp:hover {
-            background: #20bd5a;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.5);
+        }
+
+        .btn-movimento {
+            background: linear-gradient(135deg, var(--vinho) 0%, var(--vinho-light) 100%);
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            box-shadow: 0 4px 20px rgba(212, 168, 75, 0.3);
+        }
+
+        .btn-movimento:hover {
+            background: var(--gold);
+            color: var(--vinho-dark);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(212, 168, 75, 0.5);
         }
 
         /* ========== HEADER ========== */
@@ -147,13 +225,14 @@
             width: 100%;
             z-index: 1000;
             padding: 20px 0;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .header.scrolled {
-            background: var(--bordo);
+            background: linear-gradient(135deg, var(--vinho-dark) 0%, var(--vinho) 100%);
             padding: 12px 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
         }
 
         .header .container {
@@ -173,14 +252,16 @@
             font-weight: 600;
             color: var(--white);
             line-height: 1;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .logo-subtitle {
             font-size: 10px;
             color: var(--gold);
             text-transform: uppercase;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.25em;
             margin-top: 4px;
+            text-shadow: 0 0 20px rgba(212, 168, 75, 0.5);
         }
 
         .nav {
@@ -189,13 +270,13 @@
 
         .nav-list {
             display: flex;
-            gap: 40px;
+            gap: 36px;
         }
 
         .nav-link {
             font-size: 12px;
             font-weight: 500;
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.85);
             text-transform: uppercase;
             letter-spacing: 0.12em;
             position: relative;
@@ -206,11 +287,13 @@
             content: '';
             position: absolute;
             bottom: 0;
-            left: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 0;
-            height: 1px;
-            background: var(--gold);
+            height: 2px;
+            background: var(--gradient-gold);
             transition: width 0.3s ease;
+            border-radius: 2px;
         }
 
         .nav-link:hover,
@@ -227,16 +310,19 @@
             display: none;
             padding: 12px 24px;
             font-size: 11px;
-            background: var(--gold);
-            color: var(--white);
-            border-radius: 4px;
-            font-weight: 600;
+            background: var(--gradient-gold);
+            color: var(--vinho-dark);
+            border-radius: 50px;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
+            box-shadow: 0 4px 15px rgba(212, 168, 75, 0.4);
+            transition: all 0.3s ease;
         }
 
         .header-btn:hover {
-            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 168, 75, 0.5);
         }
 
         .menu-toggle {
@@ -256,6 +342,7 @@
             height: 2px;
             background: var(--white);
             transition: all 0.3s ease;
+            border-radius: 2px;
         }
 
         .menu-toggle.active span:nth-child(1) {
@@ -283,11 +370,11 @@
             right: -100%;
             width: 100%;
             height: 100vh;
-            background: var(--bordo);
+            background: var(--gradient-vinho);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: right 0.4s ease;
+            transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 999;
         }
 
@@ -302,7 +389,8 @@
         }
 
         .mobile-nav .nav-link {
-            font-size: 18px;
+            font-size: 20px;
+            letter-spacing: 0.15em;
         }
 
         /* ========== HERO ========== */
@@ -312,10 +400,11 @@
             display: flex;
             align-items: center;
             padding: 140px 0 100px;
-            background: var(--bordo);
+            background: var(--gradient-vinho);
             overflow: hidden;
         }
 
+        /* Efeito de brilho animado no fundo */
         .hero::before {
             content: '';
             position: absolute;
@@ -324,23 +413,57 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(ellipse at 20% 50%, rgba(164, 114, 28, 0.12) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(255, 255, 255, 0.04) 0%, transparent 40%),
-                radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 0.2) 0%, transparent 60%);
+                radial-gradient(ellipse at 20% 50%, rgba(212, 168, 75, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 0.3) 0%, transparent 60%);
             pointer-events: none;
+            animation: gradient-shift 8s ease infinite;
+            background-size: 200% 200%;
         }
 
+        /* Círculos decorativos animados */
         .hero::after {
             content: '';
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(164,114,28,0.1)" stroke-width="0.5"/><circle cx="50" cy="50" r="30" fill="none" stroke="rgba(164,114,28,0.08)" stroke-width="0.5"/><circle cx="50" cy="50" r="20" fill="none" stroke="rgba(164,114,28,0.06)" stroke-width="0.5"/></svg>') center/contain no-repeat;
-            opacity: 0.5;
+            top: 10%;
+            right: -5%;
+            width: 600px;
+            height: 600px;
+            background: 
+                radial-gradient(circle at center, transparent 30%, rgba(212, 168, 75, 0.08) 31%, transparent 32%),
+                radial-gradient(circle at center, transparent 50%, rgba(212, 168, 75, 0.06) 51%, transparent 52%),
+                radial-gradient(circle at center, transparent 70%, rgba(212, 168, 75, 0.04) 71%, transparent 72%);
+            animation: float 6s ease-in-out infinite;
             pointer-events: none;
         }
+
+        /* Partículas de luz */
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 60%; left: 20%; animation-delay: 1s; }
+        .particle:nth-child(3) { top: 30%; left: 80%; animation-delay: 2s; }
+        .particle:nth-child(4) { top: 70%; left: 70%; animation-delay: 0.5s; }
+        .particle:nth-child(5) { top: 40%; left: 90%; animation-delay: 1.5s; }
+        .particle:nth-child(6) { top: 80%; left: 40%; animation-delay: 2.5s; }
 
         .hero-content {
             position: relative;
@@ -351,10 +474,10 @@
         .hero-tag {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px 20px;
-            background: rgba(164, 114, 28, 0.15);
-            border: 1px solid rgba(164, 114, 28, 0.3);
+            gap: 12px;
+            padding: 12px 24px;
+            background: rgba(212, 168, 75, 0.15);
+            border: 1px solid rgba(212, 168, 75, 0.4);
             border-radius: 50px;
             font-size: 11px;
             font-weight: 600;
@@ -362,36 +485,34 @@
             text-transform: uppercase;
             letter-spacing: 0.15em;
             margin-bottom: 32px;
+            backdrop-filter: blur(10px);
         }
 
         .hero-tag::before {
             content: '';
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             background: var(--gold);
             border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
+            animation: pulse-glow 2s infinite;
+            box-shadow: 0 0 15px var(--gold);
         }
 
         .hero-title {
-            font-size: clamp(40px, 7vw, 72px);
+            font-size: clamp(42px, 7vw, 76px);
             font-weight: 400;
             color: var(--white);
             line-height: 1.1;
             margin-bottom: 28px;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.3);
         }
 
         .hero-description {
             font-size: 18px;
             font-weight: 300;
-            color: rgba(255,255,255,0.75);
-            line-height: 1.8;
-            margin-bottom: 40px;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.9;
+            margin-bottom: 44px;
             max-width: 560px;
         }
 
@@ -399,15 +520,15 @@
             display: flex;
             flex-wrap: wrap;
             gap: 16px;
-            margin-bottom: 60px;
+            margin-bottom: 70px;
         }
 
         .hero-stats {
             display: flex;
             flex-wrap: wrap;
-            gap: 40px;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            gap: 50px;
+            padding-top: 44px;
+            border-top: 1px solid rgba(255,255,255,0.15);
         }
 
         .stat-item {
@@ -416,23 +537,26 @@
 
         .stat-number {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 42px;
+            font-size: 44px;
             font-weight: 600;
             color: var(--gold);
             line-height: 1;
+            text-shadow: 0 0 30px rgba(212, 168, 75, 0.4);
         }
 
         .stat-label {
-            font-size: 12px;
-            color: rgba(255,255,255,0.6);
+            font-size: 13px;
+            color: rgba(255,255,255,0.7);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-top: 8px;
+            letter-spacing: 0.08em;
+            margin-top: 10px;
+            font-weight: 500;
         }
 
         /* ========== SECTIONS ========== */
         .section {
-            padding: 100px 0;
+            padding: 110px 0;
+            position: relative;
         }
 
         .section-light {
@@ -440,47 +564,71 @@
         }
 
         .section-dark {
-            background: var(--bordo);
+            background: var(--gradient-vinho);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-dark::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 10% 20%, rgba(212, 168, 75, 0.1) 0%, transparent 40%),
+                radial-gradient(ellipse at 90% 80%, rgba(212, 168, 75, 0.08) 0%, transparent 40%);
+            pointer-events: none;
         }
 
         .section-alt {
-            background: var(--off-white);
+            background: linear-gradient(180deg, var(--cream) 0%, var(--off-white) 100%);
         }
 
         .section-header {
             text-align: center;
-            max-width: 640px;
-            margin: 0 auto 64px;
+            max-width: 700px;
+            margin: 0 auto 72px;
         }
 
         .section-tag {
             display: inline-block;
             font-size: 11px;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--gold);
             text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-bottom: 16px;
+            letter-spacing: 0.25em;
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        .section-tag::before,
+        .section-tag::after {
+            content: '✦';
+            margin: 0 12px;
+            opacity: 0.5;
         }
 
         .section-title {
-            font-size: clamp(32px, 5vw, 48px);
+            font-size: clamp(34px, 5vw, 52px);
             color: var(--black);
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         .section-dark .section-title {
             color: var(--white);
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
         }
 
         .section-description {
             font-size: 17px;
             color: var(--gray);
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
         .section-dark .section-description {
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.75);
         }
 
         /* ========== PAIN SECTION ========== */
@@ -492,32 +640,50 @@
 
         .pain-card {
             background: var(--white);
-            border: 1px solid #E8E4DD;
-            border-radius: 12px;
-            padding: 36px;
-            transition: all 0.4s ease;
+            border: 1px solid rgba(212, 168, 75, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pain-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 168, 75, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .pain-card:hover::before {
+            left: 100%;
         }
 
         .pain-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(114, 47, 55, 0.1);
+            transform: translateY(-12px);
+            box-shadow: 0 25px 60px rgba(74, 21, 38, 0.15);
             border-color: var(--gold);
         }
 
         .pain-icon {
-            width: 52px;
-            height: 52px;
-            background: linear-gradient(135deg, var(--bordo) 0%, var(--bordo-light) 100%);
-            border-radius: 12px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-vinho);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 24px;
+            margin-bottom: 26px;
+            box-shadow: 0 8px 25px rgba(74, 21, 38, 0.3);
         }
 
         .pain-icon svg {
-            width: 26px;
-            height: 26px;
+            width: 28px;
+            height: 28px;
             stroke: var(--gold);
             fill: none;
             stroke-width: 1.5;
@@ -526,14 +692,14 @@
         .pain-title {
             font-size: 22px;
             font-weight: 600;
-            color: var(--black);
-            margin-bottom: 12px;
+            color: var(--vinho);
+            margin-bottom: 14px;
         }
 
         .pain-text {
             font-size: 15px;
             color: var(--gray);
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
         /* ========== ABOUT SECTION ========== */
@@ -552,16 +718,17 @@
 
         .about-image {
             position: relative;
-            max-width: 420px;
+            max-width: 440px;
             margin: 0 auto;
         }
 
         .about-image-inner {
             position: relative;
-            border-radius: 16px;
+            border-radius: 24px;
             overflow: hidden;
             aspect-ratio: 3/4;
-            background: linear-gradient(135deg, var(--bordo-light) 0%, var(--bordo) 100%);
+            background: linear-gradient(135deg, var(--vinho-light) 0%, var(--vinho) 100%);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
         }
 
         .about-image-placeholder {
@@ -570,58 +737,82 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255,255,255,0.5);
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 0.1em;
         }
 
+        /* Moldura decorativa */
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: 15px;
+            bottom: 15px;
+            border: 2px solid var(--gold);
+            border-radius: 24px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
         .about-image::after {
             content: '';
             position: absolute;
-            top: 24px;
-            right: -24px;
+            top: 20px;
+            right: -25px;
             width: 100%;
             height: 100%;
             border: 2px solid var(--gold);
-            border-radius: 16px;
+            border-radius: 24px;
             z-index: -1;
         }
 
         .about-content {
             color: var(--white);
+            position: relative;
+            z-index: 2;
         }
 
         .about-text {
-            margin-bottom: 36px;
+            margin-bottom: 40px;
         }
 
         .about-text p {
             font-size: 16px;
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.85);
             line-height: 1.9;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         .credentials {
             display: flex;
             flex-direction: column;
-            gap: 14px;
-            margin-bottom: 36px;
+            gap: 16px;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(212, 168, 75, 0.2);
+            backdrop-filter: blur(10px);
         }
 
         .credential {
             display: flex;
             align-items: center;
-            gap: 14px;
-            font-size: 14px;
-            color: rgba(255,255,255,0.9);
+            gap: 16px;
+            font-size: 15px;
+            color: rgba(255,255,255,0.95);
+            font-weight: 500;
         }
 
         .credential-icon {
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
+            min-width: 24px;
             color: var(--gold);
+            filter: drop-shadow(0 0 8px rgba(212, 168, 75, 0.5));
         }
 
         .credential-icon svg {
@@ -629,594 +820,16 @@
             height: 100%;
         }
 
-        /* ========== SERVICES ========== */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 28px;
-        }
-
-        .service-card {
-            background: var(--white);
-            border: 1px solid #E8E4DD;
-            border-radius: 16px;
-            padding: 40px 32px;
-            position: relative;
-            transition: all 0.4s ease;
+        .about-buttons {
             display: flex;
-            flex-direction: column;
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 24px 60px rgba(114, 47, 55, 0.12);
-        }
-
-        .service-card.featured {
-            background: var(--bordo);
-            border-color: var(--bordo);
-        }
-
-        .service-card.featured .service-title,
-        .service-card.featured .service-description {
-            color: var(--white);
-        }
-
-        .service-card.featured .service-description {
-            color: rgba(255,255,255,0.8);
-        }
-
-        .service-card.featured .service-benefits li {
-            color: rgba(255,255,255,0.9);
-        }
-
-        .service-badge {
-            position: absolute;
-            top: -14px;
-            left: 32px;
-            background: var(--gold);
-            color: var(--white);
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            padding: 8px 18px;
-            border-radius: 50px;
-        }
-
-        .service-icon {
-            width: 56px;
-            height: 56px;
-            background: rgba(164, 114, 28, 0.1);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-        }
-
-        .service-card.featured .service-icon {
-            background: rgba(255,255,255,0.1);
-        }
-
-        .service-icon svg {
-            width: 28px;
-            height: 28px;
-            stroke: var(--gold);
-            fill: none;
-            stroke-width: 1.5;
-        }
-
-        .service-title {
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--black);
-            margin-bottom: 14px;
-        }
-
-        .service-description {
-            font-size: 15px;
-            color: var(--gray);
-            line-height: 1.7;
-            margin-bottom: 24px;
-            flex-grow: 1;
-        }
-
-        .service-benefits {
-            margin-bottom: 28px;
-        }
-
-        .service-benefits li {
-            font-size: 14px;
-            color: var(--black);
-            padding: 8px 0;
-            padding-left: 24px;
-            position: relative;
-        }
-
-        .service-benefits li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 8px;
-            height: 8px;
-            background: var(--gold);
-            border-radius: 50%;
-        }
-
-        /* ========== JOURNEY ========== */
-        .journey-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-
-        .journey-step {
-            text-align: center;
-            padding: 32px 24px;
-            position: relative;
-        }
-
-        .journey-number {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 64px;
-            font-weight: 300;
-            color: var(--gold);
-            line-height: 1;
-            margin-bottom: 20px;
-            opacity: 0.8;
-        }
-
-        .journey-title {
-            font-size: 22px;
-            font-weight: 600;
-            color: var(--white);
-            margin-bottom: 14px;
-        }
-
-        .journey-text {
-            font-size: 14px;
-            color: rgba(255,255,255,0.7);
-            line-height: 1.8;
-        }
-
-        /* ========== TESTIMONIALS ========== */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 28px;
-        }
-
-        .testimonial-card {
-            background: var(--white);
-            border: 1px solid #E8E4DD;
-            border-radius: 16px;
-            padding: 36px;
-            transition: all 0.4s ease;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 50px rgba(114, 47, 55, 0.1);
-            border-color: var(--gold);
-        }
-
-        .testimonial-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 19px;
-            font-style: italic;
-            color: var(--black);
-            line-height: 1.7;
-            margin-bottom: 28px;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
+            flex-wrap: wrap;
             gap: 16px;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: var(--bordo);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        .author-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .author-name {
-            font-weight: 600;
-            color: var(--black);
-            font-size: 15px;
-        }
-
-        .author-detail {
-            font-size: 13px;
-            color: var(--gray);
-        }
-
-        /* ========== COMMUNITY ========== */
-        .community-wrapper {
-            background: linear-gradient(135deg, var(--bordo-dark) 0%, var(--bordo) 100%);
-            border-radius: 24px;
-            padding: 80px 48px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .community-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 60%;
-            height: 200%;
-            background: radial-gradient(ellipse, rgba(164, 114, 28, 0.15) 0%, transparent 60%);
-            pointer-events: none;
-        }
-
-        .community-content {
-            position: relative;
-            z-index: 2;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .community-title {
-            font-size: clamp(28px, 4vw, 40px);
-            color: var(--white);
-            margin-bottom: 20px;
-        }
-
-        .community-description {
-            font-size: 17px;
-            color: rgba(255,255,255,0.8);
-            line-height: 1.8;
-            margin-bottom: 36px;
-        }
-
-        .community-features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 32px;
-            margin-bottom: 40px;
-        }
-
-        .community-feature {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 14px;
-            color: var(--white);
-        }
-
-        .community-feature svg {
-            width: 20px;
-            height: 20px;
-            stroke: var(--gold);
-            fill: none;
-            stroke-width: 1.5;
-        }
-
-        /* ========== CTA SECTION ========== */
-        .cta-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 60px;
-            align-items: start;
-        }
-
-        @media (min-width: 992px) {
-            .cta-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .cta-content {
-            text-align: center;
-        }
-
-        @media (min-width: 992px) {
-            .cta-content {
-                text-align: left;
-                padding-right: 40px;
-            }
-        }
-
-        .cta-title {
-            font-size: clamp(28px, 4vw, 40px);
-            color: var(--black);
-            margin-bottom: 20px;
-        }
-
-        .cta-description {
-            font-size: 16px;
-            color: var(--gray);
-            line-height: 1.8;
-            margin-bottom: 36px;
-        }
-
-        .cta-trust {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 24px;
-            font-size: 12px;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        @media (min-width: 992px) {
-            .cta-trust {
-                justify-content: flex-start;
-            }
-        }
-
-        .cta-trust span {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .cta-trust svg {
-            width: 16px;
-            height: 16px;
-            stroke: var(--gold);
-            fill: none;
-            stroke-width: 1.5;
-        }
-
-        /* Form */
-        .form-wrapper {
-            background: var(--off-white);
-            border-radius: 20px;
-            padding: 44px;
-            border: 1px solid #E8E4DD;
-        }
-
-        .form-title {
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--black);
-            margin-bottom: 28px;
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 16px 20px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
-            color: var(--black);
-            background: var(--white);
-            border: 1px solid #E0DCD5;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 0 0 4px rgba(164, 114, 28, 0.1);
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: var(--gray-light);
-        }
-
-        .form-group select {
-            appearance: none;
-            cursor: pointer;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%236B6B6B' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 16px center;
-            padding-right: 48px;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 110px;
-        }
-
-        .btn-full {
-            width: 100%;
-        }
-
-        /* ========== FOOTER ========== */
-        .footer {
-            background: var(--bordo-dark);
-            padding: 80px 0 32px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 48px;
-            margin-bottom: 60px;
-        }
-
-        @media (min-width: 768px) {
-            .footer-grid {
-                grid-template-columns: 2fr 1fr 1fr 1fr;
-            }
-        }
-
-        .footer-brand {
-            max-width: 280px;
-        }
-
-        .footer-brand .logo {
-            margin-bottom: 20px;
-        }
-
-        .footer-description {
-            font-size: 14px;
-            color: rgba(255,255,255,0.6);
-            line-height: 1.8;
-        }
-
-        .footer-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--white);
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            margin-bottom: 24px;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .footer-links a {
-            font-size: 14px;
-            color: rgba(255,255,255,0.6);
-        }
-
-        .footer-links a:hover {
-            color: var(--gold);
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 14px;
-        }
-
-        .footer-social a {
-            width: 44px;
-            height: 44px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .footer-social a:hover {
-            background: var(--gold);
-            transform: translateY(-3px);
-        }
-
-        .footer-social svg {
-            width: 20px;
-            height: 20px;
-            stroke: var(--white);
-            fill: none;
-            stroke-width: 1.5;
-        }
-
-        .footer-bottom {
-            padding-top: 32px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-        }
-
-        .footer-bottom p {
-            font-size: 13px;
-            color: rgba(255,255,255,0.4);
-        }
-
-        /* ========== WHATSAPP FLOAT ========== */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            width: 60px;
-            height: 60px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
-            z-index: 998;
-            transition: all 0.3s ease;
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .whatsapp-float.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.5);
-        }
-
-        .whatsapp-float svg {
-            width: 30px;
-            height: 30px;
-            fill: var(--white);
-        }
-
-        /* ========== ANIMATIONS ========== */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-in {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-
-        /* Reveal on scroll */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
             .section {
-                padding: 70px 0;
+                padding: 80px 0;
             }
 
             .hero {
@@ -1224,16 +837,27 @@
             }
 
             .hero-stats {
-                gap: 24px;
+                gap: 30px;
             }
 
-            .community-wrapper {
-                padding: 50px 28px;
-                border-radius: 16px;
+            .hero-buttons {
+                flex-direction: column;
+                align-items: flex-start;
             }
 
-            .form-wrapper {
-                padding: 32px 24px;
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            @media (min-width: 400px) {
+                .btn {
+                    width: auto;
+                }
+                
+                .hero-buttons {
+                    flex-direction: row;
+                }
             }
         }
     </style>
@@ -1244,8 +868,8 @@
     <header class="header" id="header">
         <div class="container">
             <a href="#home" class="logo">
-                <span class="logo-text">Carol Abientar</span>
-                <span class="logo-subtitle">Terapeuta Sistêmica</span>
+                <span class="logo-text">Carol Costa</span>
+                <span class="logo-subtitle">Terapeuta e Tatuadora Sistêmica</span>
             </a>
             
             <nav class="nav">
@@ -1254,6 +878,7 @@
                     <li><a href="#sobre" class="nav-link">Sobre</a></li>
                     <li><a href="#servicos" class="nav-link">Serviços</a></li>
                     <li><a href="#jornada" class="nav-link">Jornada</a></li>
+                    <li><a href="#movimento" class="nav-link">Movimento</a></li>
                     <li><a href="#contato" class="nav-link">Contato</a></li>
                 </ul>
             </nav>
@@ -1277,6 +902,7 @@
             <li><a href="#sobre" class="nav-link">Sobre</a></li>
             <li><a href="#servicos" class="nav-link">Serviços</a></li>
             <li><a href="#jornada" class="nav-link">Jornada</a></li>
+            <li><a href="#movimento" class="nav-link">Movimento</a></li>
             <li><a href="#contato" class="nav-link">Contato</a></li>
         </ul>
     </nav>
@@ -1284,9 +910,19 @@
     <main>
         <!-- Hero -->
         <section class="hero" id="home">
+            <!-- Partículas decorativas -->
+            <div class="hero-particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+            
             <div class="container">
                 <div class="hero-content">
-                    <span class="hero-tag">Constelação Familiar e Terapia Sistêmica</span>
+                    <span class="hero-tag">Terapia Sistêmica e Constelação Familiar</span>
                     
                     <h1 class="hero-title">
                         Honre sua história.<br>
@@ -1303,8 +939,8 @@
                         <a href="https://wa.me/5500000000000?text=Olá! Gostaria de agendar uma sessão." class="btn btn-primary" target="_blank" rel="noopener">
                             Iniciar Minha Jornada
                         </a>
-                        <a href="#sobre" class="btn btn-secondary">
-                            Conhecer Mais
+                        <a href="#movimento" class="btn btn-movimento">
+                            Conhecer o Movimento
                         </a>
                     </div>
                     
@@ -1314,12 +950,12 @@
                             <span class="stat-label">Vidas Transformadas</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number">8+</span>
+                            <span class="stat-number">5+</span>
                             <span class="stat-label">Anos de Experiência</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number">Online</span>
-                            <span class="stat-label">e Presencial</span>
+                            <span class="stat-number" style="font-size: 28px;">Atendimentos</span>
+                            <span class="stat-label">Online e Presenciais</span>
                         </div>
                     </div>
                 </div>
@@ -1387,13 +1023,14 @@
                     <div class="about-content reveal">
                         <span class="section-tag">Sobre Mim</span>
                         <h2 class="section-title" style="color: var(--white);">
-                            Prazer, sou a <span class="text-gold">Carol</span>
+                            Prazer, sou a <span class="text-gold">Carol Costa</span>
                         </h2>
                         
                         <div class="about-text">
                             <p>
-                                Há mais de 8 anos, dedico minha vida a facilitar processos de cura 
-                                e transformação através da Terapia Sistêmica e Constelação Familiar.
+                                Há mais de 5 anos, dedico minha vida a facilitar processos de cura 
+                                e transformação através da Terapia Sistêmica, Constelação Familiar 
+                                e da arte da Tatuagem Sistêmica.
                             </p>
                             <p>
                                 Minha jornada começou quando percebi que muitos dos nossos bloqueios 
@@ -1418,483 +1055,27 @@
                                 <span class="credential-icon">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                                 </span>
+                                <span>Criadora do Método Tatuagem Sistêmica</span>
+                            </div>
+                            <div class="credential">
+                                <span class="credential-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                </span>
                                 <span>Consteladora Familiar</span>
                             </div>
                             <div class="credential">
                                 <span class="credential-icon">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                                 </span>
-                                <span>Facilitadora de Processos de Cura</span>
+                                <span>Cocriadora do Método Liberação Sistêmica</span>
                             </div>
                         </div>
                         
-                        <a href="#contato" class="btn btn-primary">Vamos Conversar</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section class="section section-light" id="servicos">
-            <div class="container">
-                <div class="section-header reveal">
-                    <span class="section-tag">Caminhos de Cura</span>
-                    <h2 class="section-title">
-                        Formas de <span class="text-gold">trabalharmos juntas</span>
-                    </h2>
-                    <p class="section-description">
-                        Cada jornada é única. Conheça as diferentes possibilidades de 
-                        iniciar seu processo de transformação.
-                    </p>
-                </div>
-                
-                <div class="services-grid">
-                    <div class="service-card featured reveal">
-                        <span class="service-badge">Mais Procurado</span>
-                        <div class="service-icon">
-                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/></svg>
-                        </div>
-                        <h3 class="service-title">Constelação Familiar</h3>
-                        <p class="service-description">
-                            Através desta poderosa ferramenta terapêutica, acessamos as dinâmicas 
-                            ocultas do seu sistema familiar, trazendo à luz padrões inconscientes.
-                        </p>
-                        <ul class="service-benefits">
-                            <li>Sessões individuais ou em grupo</li>
-                            <li>Atendimento online ou presencial</li>
-                            <li>Ressignificação de padrões</li>
-                        </ul>
-                        <a href="https://wa.me/5500000000000?text=Olá! Tenho interesse em Constelação Familiar." class="btn btn-primary btn-full" target="_blank" rel="noopener">
-                            Saber Mais
-                        </a>
-                    </div>
-                    
-                    <div class="service-card reveal">
-                        <div class="service-icon">
-                            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                        </div>
-                        <h3 class="service-title">Tatuagem Sistêmica</h3>
-                        <p class="service-description">
-                            Uma experiência única que une constelação e arte corporal. 
-                            Criamos juntas um símbolo de poder que se torna um amuleto permanente.
-                        </p>
-                        <ul class="service-benefits">
-                            <li>Constelação + criação do símbolo</li>
-                            <li>Arquétipos personalizados</li>
-                            <li>Integração e honra ancestral</li>
-                        </ul>
-                        <a href="https://wa.me/5500000000000?text=Olá! Tenho interesse em Tatuagem Sistêmica." class="btn btn-outline btn-full" target="_blank" rel="noopener">
-                            Saber Mais
-                        </a>
-                    </div>
-                    
-                    <div class="service-card reveal">
-                        <div class="service-icon">
-                            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                        </div>
-                        <h3 class="service-title">Liberação Sistêmica</h3>
-                        <p class="service-description">
-                            Processo intensivo de liberação emocional de alto impacto, 
-                            trabalhando traumas e bloqueios de forma profunda e transformadora.
-                        </p>
-                        <ul class="service-benefits">
-                            <li>Processo intensivo e profundo</li>
-                            <li>Liberação de traumas</li>
-                            <li>Resultados transformadores</li>
-                        </ul>
-                        <a href="https://wa.me/5500000000000?text=Olá! Tenho interesse em Liberação Sistêmica." class="btn btn-outline btn-full" target="_blank" rel="noopener">
-                            Saber Mais
-                        </a>
-                    </div>
-                    
-                    <div class="service-card reveal">
-                        <div class="service-icon">
-                            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                        </div>
-                        <h3 class="service-title">Vivências e Mentorias</h3>
-                        <p class="service-description">
-                            Encontros em grupo para mulheres que desejam se conectar, 
-                            aprender e crescer juntas através de vivências terapêuticas.
-                        </p>
-                        <ul class="service-benefits">
-                            <li>Grupos exclusivos para mulheres</li>
-                            <li>Vivências transformadoras</li>
-                            <li>Comunidade de apoio</li>
-                        </ul>
-                        <a href="https://wa.me/5500000000000?text=Olá! Tenho interesse nas Vivências." class="btn btn-outline btn-full" target="_blank" rel="noopener">
-                            Saber Mais
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Journey Section -->
-        <section class="section section-dark" id="jornada">
-            <div class="container">
-                <div class="section-header reveal">
-                    <span class="section-tag">O Processo</span>
-                    <h2 class="section-title" style="color: var(--white);">
-                        Como funciona sua <span class="text-gold">jornada de cura</span>
-                    </h2>
-                </div>
-                
-                <div class="journey-grid">
-                    <div class="journey-step reveal">
-                        <span class="journey-number">01</span>
-                        <h3 class="journey-title">Primeiro Contato</h3>
-                        <p class="journey-text">
-                            Conversamos para entender sua história, suas dores e seus objetivos. 
-                            Momento de criar conexão e definir o melhor caminho.
-                        </p>
-                    </div>
-                    
-                    <div class="journey-step reveal">
-                        <span class="journey-number">02</span>
-                        <h3 class="journey-title">Sessão de Constelação</h3>
-                        <p class="journey-text">
-                            Em um espaço seguro, acessamos as dinâmicas do seu sistema 
-                            familiar, trazendo luz aos padrões que pedem por cura.
-                        </p>
-                    </div>
-                    
-                    <div class="journey-step reveal">
-                        <span class="journey-number">03</span>
-                        <h3 class="journey-title">Integração</h3>
-                        <p class="journey-text">
-                            Após a sessão, o processo continua internamente. Acompanho você 
-                            nesta fase, oferecendo suporte quando necessário.
-                        </p>
-                    </div>
-                    
-                    <div class="journey-step reveal">
-                        <span class="journey-number">04</span>
-                        <h3 class="journey-title">Transformação</h3>
-                        <p class="journey-text">
-                            Com o tempo, você perceberá mudanças em como se sente, 
-                            se relaciona e vive. A cura se manifesta de formas únicas.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials -->
-        <section class="section section-light">
-            <div class="container">
-                <div class="section-header reveal">
-                    <span class="section-tag">Transformações Reais</span>
-                    <h2 class="section-title">
-                        O que dizem sobre <span class="text-gold">este trabalho</span>
-                    </h2>
-                </div>
-                
-                <div class="testimonials-grid">
-                    <div class="testimonial-card reveal">
-                        <p class="testimonial-text">
-                            "A sessão com a Carol mudou completamente minha perspectiva sobre 
-                            minha família. Entendi padrões que se repetiam há gerações e finalmente 
-                            consegui me libertar de um peso que carreguei por anos."
-                        </p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">M</div>
-                            <div class="author-info">
-                                <span class="author-name">Mariana S.</span>
-                                <span class="author-detail">Constelação Familiar</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card reveal">
-                        <p class="testimonial-text">
-                            "A tatuagem sistêmica foi uma experiência transformadora. 
-                            Não é apenas uma tatuagem, é um símbolo da minha cura, da minha 
-                            força. Olho para ela todos os dias e lembro quem eu sou."
-                        </p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">J</div>
-                            <div class="author-info">
-                                <span class="author-name">Julia R.</span>
-                                <span class="author-detail">Tatuagem Sistêmica</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card reveal">
-                        <p class="testimonial-text">
-                            "Participar das vivências com a Carol foi profundamente curativo. 
-                            O espaço de acolhimento e a profundidade do trabalho me ajudaram 
-                            a reconectar com minha essência feminina."
-                        </p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">A</div>
-                            <div class="author-info">
-                                <span class="author-name">Amanda L.</span>
-                                <span class="author-detail">Vivências em Grupo</span>
-                            </div>
+                        <div class="about-buttons">
+                            <a href="#contato" class="btn btn-primary">Vamos Conversar</a>
+                            <a href="#movimento" class="btn btn-secondary">Conhecer o Movimento</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Community -->
-        <section class="section section-alt">
-            <div class="container">
-                <div class="community-wrapper reveal">
-                    <div class="community-content">
-                        <span class="section-tag">Comunidade</span>
-                        <h2 class="community-title">
-                            Faça parte de uma comunidade de 
-                            <span class="text-gold">mulheres em transformação</span>
-                        </h2>
-                        <p class="community-description">
-                            Um espaço exclusivo para mulheres que buscam autoconhecimento, 
-                            desenvolvimento pessoal e conexão com sua essência feminina.
-                        </p>
-                        
-                        <div class="community-features">
-                            <div class="community-feature">
-                                <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                                <span>Conteúdos Exclusivos</span>
-                            </div>
-                            <div class="community-feature">
-                                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                                <span>Encontros Mensais</span>
-                            </div>
-                            <div class="community-feature">
-                                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                                <span>Rede de Apoio</span>
-                            </div>
-                        </div>
-                        
-                        <a href="https://wa.me/5500000000000?text=Olá! Quero saber mais sobre a comunidade." class="btn btn-primary" target="_blank" rel="noopener">
-                            Quero Participar
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA / Contact -->
-        <section class="section section-light" id="contato">
-            <div class="container">
-                <div class="cta-grid">
-                    <div class="cta-content reveal">
-                        <span class="section-tag">Próximo Passo</span>
-                        <h2 class="cta-title">
-                            Pronta para iniciar sua 
-                            <span class="text-gold">jornada de transformação?</span>
-                        </h2>
-                        <p class="cta-description">
-                            O primeiro passo é uma conversa. Sem compromisso, sem pressão. 
-                            Apenas um espaço para você compartilhar sua história e 
-                            descobrirmos juntas o melhor caminho.
-                        </p>
-                        
-                        <a href="https://wa.me/5500000000000?text=Olá Carol! Gostaria de agendar uma conversa." class="btn btn-whatsapp" target="_blank" rel="noopener">
-                            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                            Conversar no WhatsApp
-                        </a>
-                        
-                        <div class="cta-trust">
-                            <span>
-                                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                                Resposta em até 24h
-                            </span>
-                            <span>
-                                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                                Conversa sem compromisso
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <div class="form-wrapper reveal">
-                        <h3 class="form-title">Ou deixe sua mensagem</h3>
-                        <form id="contactForm">
-                            <div class="form-group">
-                                <input type="text" name="nome" placeholder="Seu nome" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" name="email" placeholder="Seu e-mail" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="tel" name="telefone" placeholder="Seu WhatsApp">
-                            </div>
-                            <div class="form-group">
-                                <select name="interesse" required>
-                                    <option value="">Qual seu interesse?</option>
-                                    <option value="constelacao">Constelação Familiar</option>
-                                    <option value="tatuagem">Tatuagem Sistêmica</option>
-                                    <option value="liberacao">Liberação Sistêmica</option>
-                                    <option value="vivencias">Vivências e Mentorias</option>
-                                    <option value="comunidade">Comunidade</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <textarea name="mensagem" placeholder="Sua mensagem (opcional)" rows="4"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-full">Enviar Mensagem</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="#home" class="logo">
-                        <span class="logo-text">Carol Abientar</span>
-                        <span class="logo-subtitle">Terapeuta Sistêmica</span>
-                    </a>
-                    <p class="footer-description">
-                        Facilitando processos de cura e transformação através 
-                        da sabedoria sistêmica e constelação familiar.
-                    </p>
-                </div>
-                
-                <div>
-                    <h4 class="footer-title">Navegação</h4>
-                    <nav class="footer-links">
-                        <a href="#home">Início</a>
-                        <a href="#sobre">Sobre</a>
-                        <a href="#servicos">Serviços</a>
-                        <a href="#contato">Contato</a>
-                    </nav>
-                </div>
-                
-                <div>
-                    <h4 class="footer-title">Serviços</h4>
-                    <nav class="footer-links">
-                        <a href="#servicos">Constelação Familiar</a>
-                        <a href="#servicos">Tatuagem Sistêmica</a>
-                        <a href="#servicos">Liberação Sistêmica</a>
-                        <a href="#servicos">Vivências</a>
-                    </nav>
-                </div>
-                
-                <div>
-                    <h4 class="footer-title">Redes Sociais</h4>
-                    <div class="footer-social">
-                        <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
-                            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                        </a>
-                        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" aria-label="WhatsApp">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>© 2024 Carol Abientar - Terapeuta Sistêmica. Todos os direitos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- WhatsApp Float -->
-    <a href="https://wa.me/5500000000000?text=Olá! Vim pelo site." class="whatsapp-float" id="whatsappFloat" target="_blank" rel="noopener" aria-label="WhatsApp">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    </a>
-
-    <script>
-        // Header scroll
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            header.classList.toggle('scrolled', window.scrollY > 50);
-        });
-
-        // Mobile menu
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileNav = document.getElementById('mobileNav');
-        
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            mobileNav.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
-        });
-
-        document.querySelectorAll('.mobile-nav .nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                mobileNav.classList.remove('active');
-                document.body.classList.remove('menu-open');
-            });
-        });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offset = header.offsetHeight;
-                    window.scrollTo({
-                        top: target.offsetTop - offset,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Active nav link
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
-        
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 200;
-                if (scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Reveal on scroll
-        const reveals = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '-50px' });
-
-        reveals.forEach(el => revealObserver.observe(el));
-
-        // WhatsApp float visibility
-        const whatsappFloat = document.getElementById('whatsappFloat');
-        window.addEventListener('scroll', () => {
-            whatsappFloat.classList.toggle('visible', window.scrollY > 400);
-        });
-
-        // Form handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const data = new FormData(this);
-            const nome = data.get('nome');
-            const interesse = data.get('interesse');
-            const mensagem = data.get('mensagem') || '';
-            const email = data.get('email');
-            const telefone = data.get('telefone') || '';
-            
-            const text = `Olá Carol! Meu nome é ${nome}.%0A%0AInteresse: ${interesse}%0A${mensagem ? 'Mensagem: ' + mensagem + '%0A' : ''}%0AE-mail: ${email}${telefone ? '%0ATelefone: ' + telefone : ''}`;
-            
-            window.open(`https://wa.me/5500000000000?text=${text}`, '_blank');
-        });
-    </script>
-
-</body>
-</html>
